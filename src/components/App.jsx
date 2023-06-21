@@ -1,5 +1,5 @@
-// import React, { Component } from "react";
-import { render } from '@testing-library/react';
+import React from "react";
+
 import { useState } from 'react';
 // import { Section } from "./Section/Section";
 import { Notification } from 'components/Notification/Notification';
@@ -28,20 +28,15 @@ export  const App = () => {
     }
   };
 
-  const countTotal = () => {
-    return Object.values(this.state).reduce(
-      (accumulator, currentValue) => accumulator + currentValue,
-      0
-    );
-  };
-
+  const Total = good + neutral + bad;
+const options = ["good", "neutral", "bad"]
   const countPositiveFeedbackPercentage = () => {
-    return Math.round((good / countTotal()) * 100);
+    return Math.round((good / Total) * 100);
   };
 
-  const Total = countTotal();
+  // const Total = countTotal();
   const GoodPercent = countPositiveFeedbackPercentage();
-  render(
+  return (
     <div
       style={{
         height: '100vh',
@@ -54,7 +49,7 @@ export  const App = () => {
     >
       <h1>"Please leave feedback"</h1>
       <FeedbackOptions
-        options={Object.keys(this.state)}
+        options={options}
         onLeaveFeedback={onLeaveFeedback}
       />
       <h2>Statistics</h2>
